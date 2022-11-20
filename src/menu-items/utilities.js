@@ -22,7 +22,7 @@ const icons = {
 
 const utilities = {
     id: 'utilities',
-    title: 'Utilities',
+    title: 'TESTE',
     type: 'group',
     children: [
         {
@@ -45,14 +45,6 @@ const utilities = {
             type: 'item',
             url: '/shadow',
             icon: icons.BarcodeOutlined
-        },
-        {
-            id: 'ant-icons',
-            title: 'Ant Icons',
-            type: 'item',
-            url: '/icons/ant',
-            icon: icons.AntDesignOutlined,
-            breadcrumbs: false
         }
     ]
 };

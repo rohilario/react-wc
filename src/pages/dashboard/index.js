@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // material-ui
 import {
@@ -72,6 +73,36 @@ const status = [
 const DashboardDefault = () => {
     const [value, setValue] = useState('today');
     const [slot, setSlot] = useState('week');
+    const [response, setResponse] = useState({ nome: '', funcao: '' });
+    const [loading, setLoading] = useState();
+
+    async function fetchQuotes() {
+        try {
+            const res = await axios.get(`https://api.football-data.org/v4/competitions/WC/matches?stage=GROUP_STAGE&matchday=1`, {
+                headers: {
+                    'x-Auth-Token': process.env.REACT_APP_TOKEN_API,
+                    Accept: 'application/json;charset=utf-8',
+                    Host: 'Iandev',
+                    'Access-Control-Allow-Origin': '*',
+                    origin: 'Iandev'
+                },
+                params: {}
+            });
+            setResponse({ nome: res.data.competition.name, funcao: 'teste_funcao' });
+            //console.log(res.data.competition);
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+    }
+    useEffect(() => {
+        // Trigger the API Call
+        setLoading(true);
+        fetchQuotes();
+        console.log(response);
+        console.log(loading);
+    }, []);
 
     return (
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -80,7 +111,7 @@ const DashboardDefault = () => {
                 <Typography variant="h5">Dashboard</Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra="35,000" />
+                {!loading && <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra={response.nome} />}
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} extra="8,900" />

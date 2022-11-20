@@ -60,7 +60,7 @@ AnalyticEcommerce.propTypes = {
     count: PropTypes.string,
     percentage: PropTypes.number,
     isLoss: PropTypes.bool,
-    extra: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
+    extra: PropTypes.array
 };
 
 AnalyticEcommerce.defaultProps = {

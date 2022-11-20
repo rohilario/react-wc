@@ -4,7 +4,6 @@ import { GithubOutlined } from '@ant-design/icons';
 
 // project import
 import Search from './Search';
-import Profile from './Profile';
 import Notification from './Notification';
 import MobileSection from './MobileSection';
 
@@ -31,7 +30,6 @@ const HeaderContent = () => {
             </IconButton>
 
             <Notification />
-            {!matchesXs && <Profile />}
             {matchesXs && <MobileSection />}
         </>
     );
